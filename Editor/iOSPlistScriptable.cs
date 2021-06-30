@@ -1,3 +1,5 @@
+#if UNITY_EDITOR && UNITY_IOS
+
 using System;
 
 using UnityEngine;
@@ -17,3 +19,5 @@ public class iOSPlistScriptable : ScriptableObject
 
 [Serializable]
 public class PlistDictionary : Dictionary<string, string> { }
+
+#endif

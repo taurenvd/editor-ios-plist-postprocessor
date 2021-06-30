@@ -1,4 +1,4 @@
-﻿#if UNITY_IOS
+﻿#if UNITY_EDITOR && UNITY_IOS
 using UnityEngine;
 
 using UnityEditor;
@@ -10,23 +10,48 @@ using System.Collections.Generic;
 
 public class iOSPlistPostProcessor
 {
-    const string _resource_folder = "Packages/com.unity.ios-plist-postprocessor/Resources";
+    const string _resource_folder = "Assets/Editor/iOS/PlistPostProcessor";
     const string _asset_name = "IOSPlistScriptable.asset";
 
     static iOSPlistScriptable _plist_scriptable;
-    
+
+    #region Properties
+
+    static string PathToScriptable => Path.Combine(_resource_folder, _asset_name);
     static iOSPlistScriptable PlistScriptable
     {
         get
         {
             if (!_plist_scriptable)
             {
-                var asset_path = $"{_resource_folder}/{_asset_name}";
-                _plist_scriptable = AssetDatabase.LoadAssetAtPath<iOSPlistScriptable>(asset_path);
+                _plist_scriptable = FindOrCreatePlistScriptable(PathToScriptable);
             }
 
             return _plist_scriptable;
         }
+    }
+
+    #endregion
+
+    static iOSPlistScriptable FindOrCreatePlistScriptable(string asset_path)
+    {
+        var exists = File.Exists(asset_path);
+
+        if (!exists)
+        {
+            var obj = ScriptableObject.CreateInstance<iOSPlistScriptable>();
+
+            if (!Directory.Exists(_resource_folder))
+            {
+                Directory.CreateDirectory(_resource_folder);
+            }
+            
+            AssetDatabase.CreateAsset(obj, asset_path);
+        }
+
+        var scriptable = AssetDatabase.LoadAssetAtPath<iOSPlistScriptable>(asset_path);
+
+        return scriptable;
     }
 
     [MenuItem("Tools/PostProcessing/iOS/Select Plist Scriptable")]

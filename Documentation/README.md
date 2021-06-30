@@ -4,4 +4,4 @@ Tools/PostProcessing/iOS/SelectPlistScriptable
 
 or
 
-navigate to Packages/iOS Plist PostProcessor/Resources/IOSPlistScriptable
+navigate "Assets/Editor/PlistPostProcessor/IOSPlistScriptable.asset"(if asset was created earlier)
