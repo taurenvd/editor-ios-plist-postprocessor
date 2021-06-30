@@ -1,0 +1,21 @@
+{
+  "name": "com.unity.ios-plist-postprocessor",
+  "version": "1.0.0",
+  "displayName": "iOS Plist Postprocessor",
+  "description": "This package provides function to easily modification of 'Info.plist' file.",
+  "unity": "2017.1",
+  "unityRelease": "0b5",
+  "keywords": [
+    "Editor",
+    "Extension",
+    "iOS",
+    "Plist",
+    "Postprocessor"
+  ],
+  "author": {
+    "name": "Valerii Dryl",
+    "email": "taurenvd@gmail.com",
+    "url": "https://www.unity3d.com"
+  },
+  "type": "tool"
+}
